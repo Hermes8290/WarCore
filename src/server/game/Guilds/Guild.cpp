@@ -2593,7 +2593,7 @@ void Guild::_DeleteBankItems(SQLTransaction& trans, bool removeItemsFromDB)
     m_bankTabs.clear();
 }
 
-bool Guild::_ModifyBankMoney(SQLTransaction& trans, uint64 amount, bool add)
+bool Guild::ModifyBankMoney(SQLTransaction& trans, uint64 amount, bool add)
 {
     if (add)
         m_bankMoney += amount;

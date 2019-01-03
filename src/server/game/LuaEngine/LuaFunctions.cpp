@@ -1104,6 +1104,7 @@ ElunaRegister<Guild> GuildMethods[] =
     { "Disband", &LuaGuild::Disband },
     { "AddMember", &LuaGuild::AddMember },
     { "DeleteMember", &LuaGuild::DeleteMember },
+    { "SetCoinage", &LuaGuild::SetCoinage },
 
     { NULL, NULL }
 };
