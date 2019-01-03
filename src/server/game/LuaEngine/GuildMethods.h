@@ -6,6 +6,7 @@
 
 #ifndef GUILDMETHODS_H
 #define GUILDMETHODS_H
+
 #include "GuildMgr.h"
 #include "Guild.h"
 
@@ -305,7 +306,7 @@ namespace LuaGuild
 #endif
         return 0;
     }
-
+    
     int SetCoinage(lua_State* L, Guild* guild)
     {
         uint64 money = Eluna::CHECKVAL<uint64>(L, 2);
