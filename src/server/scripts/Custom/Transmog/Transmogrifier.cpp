@@ -13,6 +13,7 @@ Fix the cost formula
 Cant transmogrify rediculus items // Foereaper: would be fun to stab people with a fish
 -- Cant think of any good way to handle this easily, could rip flagged items from cata DB
 */
+
 #include "Transmogrification.h"
 #include "Bag.h"
 #include "Common.h"
