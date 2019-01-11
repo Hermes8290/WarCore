@@ -107,11 +107,11 @@ void Eluna::HandleGossipSelectOption(Player* pPlayer, Item* pItem, uint32 sender
 bool Eluna::OnGossipHello(Player* pPlayer, Creature* pCreature)
 {
     START_HOOK_WITH_RETVAL(CreatureGossipBindings, GOSSIP_EVENT_ON_HELLO, pCreature->GetEntry(), false);
+    pCreature->HandleEmoteCommand(1);
     pPlayer->PlayerTalkClass->ClearMenus();
     Push(pPlayer);
     Push(pCreature);
     return CallAllFunctionsBool(CreatureGossipBindings, key, true);
-    pCreature->HandleEmoteCommand(1);
 }
 
 bool Eluna::OnGossipSelect(Player* pPlayer, Creature* pCreature, uint32 sender, uint32 action)

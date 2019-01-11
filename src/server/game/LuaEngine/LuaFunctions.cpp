@@ -785,6 +785,8 @@ ElunaRegister<Creature> CreatureMethods[] =
 #endif
     { "GetDBTableGUIDLow", &LuaCreature::GetDBTableGUIDLow },
     { "GetCreatureFamily", &LuaCreature::GetCreatureFamily },
+    // Custom Creature Function WARLOGCore
+    { "IsFormationLeader", &LuaCreature::IsFormationLeader },
 
     // Setters
     { "SetHover", &LuaCreature::SetHover },

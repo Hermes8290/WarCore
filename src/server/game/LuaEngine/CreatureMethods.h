@@ -1385,5 +1385,11 @@ auto const& threatlist = creature->getThreatManager().getThreatList();
 #endif
         return 1;
     }
+    // Custom function for WARLOGCore */
+    int IsFormationLeader(lua_State* L, Creature* creature)
+    {
+        Eluna::Push(L, creature->IsFormationLeader());
+        return 1;
+    }
 };
 #endif
