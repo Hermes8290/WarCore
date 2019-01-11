@@ -111,6 +111,7 @@ bool Eluna::OnGossipHello(Player* pPlayer, Creature* pCreature)
     Push(pPlayer);
     Push(pCreature);
     return CallAllFunctionsBool(CreatureGossipBindings, key, true);
+    pCreature->HandleEmoteCommand(1);
 }
 
 bool Eluna::OnGossipSelect(Player* pPlayer, Creature* pCreature, uint32 sender, uint32 action)
