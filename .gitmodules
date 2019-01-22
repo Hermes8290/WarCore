@@ -1,3 +1,0 @@
-[submodule "srv/server/game/LuaEngine"]
-	path = srv/server/game/LuaEngine
-	url = https://github.com/DevRainDash/WarLuna.git
