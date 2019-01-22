@@ -463,6 +463,10 @@ void ReputationMgr::SetAtWar(RepListID repListID, bool on)
 
 void ReputationMgr::SetAtWar(FactionState* faction, bool atWar) const
 {
+  if (atWar)
+    if ((faction->ID == 1104 && _player->GetReputationRank(1104) < REP_UNFRIENDLY) || (faction->ID == 1105 && _player->GetReputationRank(1105) < REP_UNFRIENDLY))
+      faction->Flags |= FACTION_FLAG_AT_WAR;
+
     // Do not allow to declare war to our own faction. But allow for rival factions (eg Aldor vs Scryer).
     if (atWar && (faction->Flags & FACTION_FLAG_PEACE_FORCED) && !(faction->Flags & FACTION_FLAG_RIVAL))
         return;
