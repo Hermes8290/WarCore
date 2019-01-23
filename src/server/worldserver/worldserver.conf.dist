@@ -4005,6 +4005,17 @@ PacketSpoof.BanMode = 0
 
 PacketSpoof.BanDuration = 86400
 
+#        CROSSFACTION BG CONFIG
+#            Enable Crossfaction battleground
+#            Default: 1 - on
+#                     0 - off
+#
+
+CrossfactionBG.enable = 1
+
+#
+###################################################################################################
+
 #
 ###################################################################################################
 
