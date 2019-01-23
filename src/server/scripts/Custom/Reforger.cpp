@@ -48,7 +48,7 @@ static const char* GetStatName(uint32 ItemStatType)
 {
     switch (ItemStatType)
     {
-        case ITEM_MOD_SPIRIT: return "Spirit"; break;
+        case ITEM_MOD_SPIRIT: return "Esprit"; break;
         case ITEM_MOD_DODGE_RATING: return "Dodge rating"; break;
         case ITEM_MOD_PARRY_RATING: return "Parry rating"; break;
         case ITEM_MOD_HIT_RATING: return "Hit rating"; break;
@@ -295,7 +295,7 @@ public:
 
         static bool OnGossipHello(Player* player, Creature* creature)
         {
-            AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "Select slot of the item to reforge:", 0, Melt(MAIN_MENU, 0));
+            AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "Sur quel objet souhaitez vous ajouter la Retouche ?", 0, Melt(MAIN_MENU, 0));
             for (uint8 slot = EQUIPMENT_SLOT_START; slot < EQUIPMENT_SLOT_END; ++slot)
             {
                 if (Item* invItem = player->GetItemByPos(INVENTORY_SLOT_BAG_0, slot))
@@ -303,8 +303,8 @@ public:
                         if (const char* slotname = GetSlotName(slot, player->GetSession()))
                             AddGossipItemFor(player, GOSSIP_ICON_TRAINER, slotname, 0, Melt(SELECT_STAT_REDUCE, slot));
             }
-            AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "Remove reforges", 0, Melt(SELECT_RESTORE, 0));
-            AddGossipItemFor(player, GOSSIP_ICON_CHAT, "Update menu", 0, Melt(MAIN_MENU, 0));
+            AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "Retirer la retouche", 0, Melt(SELECT_RESTORE, 0));
+            AddGossipItemFor(player, GOSSIP_ICON_CHAT, "{actualiser le menu}", 0, Melt(MAIN_MENU, 0));
             SendGossipMenuFor(player, DEFAULT_GOSSIP_MESSAGE, creature->GetGUID());
             return true;
         }
@@ -334,7 +334,7 @@ public:
                         {
                             uint32 guidlow = invItem->GetGUID().GetCounter();
                             const ItemTemplate* pProto = invItem->GetTemplate();
-                            AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "Stat to decrease:", sender, melt);
+                            AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "Statistique à diminuer :", sender, melt);
                             for (uint32 i = 0; i < pProto->StatsCount; ++i)
                             {
                                 int32 stat_diff = ((int32)floorf((float)pProto->ItemStat[i].ItemStatValue * 0.4f));
@@ -346,18 +346,18 @@ public:
                                         AddGossipItemFor(player, GOSSIP_ICON_TRAINER, oss.str(), guidlow, Melt(SELECT_STAT_INCREASE, i));
                                     }
                             }
-                            AddGossipItemFor(player, GOSSIP_ICON_TALK, "Back..", 0, Melt(MAIN_MENU, 0));
+                            AddGossipItemFor(player, GOSSIP_ICON_TALK, "{retour}", 0, Melt(MAIN_MENU, 0));
                             SendGossipMenuFor(player, DEFAULT_GOSSIP_MESSAGE, creature->GetGUID());
                         }
                         else
                         {
-                            player->GetSession()->SendNotification("Invalid item selected");
+                            player->GetSession()->SendNotification("L'objet sélectionné est invalide!");
                             OnGossipHello(player, creature);
                         }
                     }
                     else
                     {
-                        player->GetSession()->SendNotification("Invalid item selected");
+                        player->GetSession()->SendNotification("L'objet sélectionné est invalide!");
                         OnGossipHello(player, creature);
                     }
                     break;
@@ -371,7 +371,7 @@ public:
                             const ItemTemplate* pProto = invItem->GetTemplate();
                             int32 stat_diff = ((int32)floorf((float)pProto->ItemStat[action].ItemStatValue * 0.4f));
 
-                            AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "Stat to increase:", sender, melt);
+                            AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "Statistique à augmenter :", sender, melt);
                             for (uint8 i = 0; i < stat_type_max; ++i)
                             {
                                 bool cont = false;
@@ -389,22 +389,22 @@ public:
                                 {
                                     std::ostringstream oss;
                                     oss << stat_name << " |cFF3ECB3C+" << stat_diff << "|r";
-                                    AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, oss.str(), sender, Melt(i, (uint8)pProto->ItemStat[action].ItemStatType), "Are you sure you want to reforge\n\n" + pProto->Name1, (pProto->SellPrice < (10 * GOLD) ? (10 * GOLD) : pProto->SellPrice), false);
+                                    AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, oss.str(), sender, Melt(i, (uint8)pProto->ItemStat[action].ItemStatType), "Êtes-vous sûr de vouloir retoucher \n\n" + pProto->Name1, (pProto->SellPrice < (10 * GOLD) ? (10 * GOLD) : pProto->SellPrice), false);
                                 }
                             }
-                            AddGossipItemFor(player, GOSSIP_ICON_TALK, "Back..", 0, Melt(SELECT_STAT_REDUCE, invItem->GetSlot()));
+                            AddGossipItemFor(player, GOSSIP_ICON_TALK, "{retour}", 0, Melt(SELECT_STAT_REDUCE, invItem->GetSlot()));
                             SendGossipMenuFor(player, DEFAULT_GOSSIP_MESSAGE, creature->GetGUID());
                         }
                         else
                         {
-                            player->GetSession()->SendNotification("Invalid item selected");
+                            player->GetSession()->SendNotification("L'objet sélectionné est invalide!");
                             OnGossipHello(player, creature);
                         }
                     }
                     break;
                 case SELECT_RESTORE:
                     {
-                        AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "Select slot to remove reforge from:", sender, melt);
+                        AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "Sur quel objet souhaitez vous supprimer la Retouche ?", sender, melt);
                         if (!player->reforgeMap.empty())
                         {
                             for (uint8 slot = EQUIPMENT_SLOT_START; slot < EQUIPMENT_SLOT_END; ++slot)
@@ -412,11 +412,11 @@ public:
                                 if (Item* invItem = player->GetItemByPos(INVENTORY_SLOT_BAG_0, slot))
                                     if (player->reforgeMap.find(invItem->GetGUID().GetCounter()) != player->reforgeMap.end())
                                         if (const char* slotname = GetSlotName(slot, player->GetSession()))
-                                            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, slotname, invItem->GetGUID().GetCounter(), Melt(RESTORE, 0), "Remove reforge from\n\n" + invItem->GetTemplate()->Name1, 0, false);
+                                            AddGossipItemFor(player, GOSSIP_ICON_INTERACT_1, slotname, invItem->GetGUID().GetCounter(), Melt(RESTORE, 0), "Retirer la retouche de\n\n" + invItem->GetTemplate()->Name1, 0, false);
                             }
                         }
-                        AddGossipItemFor(player, GOSSIP_ICON_CHAT, "Update menu", sender, melt);
-                        AddGossipItemFor(player, GOSSIP_ICON_TALK, "Back..", 0, Melt(MAIN_MENU, 0));
+                        AddGossipItemFor(player, GOSSIP_ICON_CHAT, "{actualiser le menu}", sender, melt);
+                        AddGossipItemFor(player, GOSSIP_ICON_TALK, "{retour}", 0, Melt(MAIN_MENU, 0));
                         SendGossipMenuFor(player, DEFAULT_GOSSIP_MESSAGE, creature->GetGUID());
                     }
                     break;
@@ -448,12 +448,12 @@ public:
                                 }
                                 else
                                 {
-                                    player->GetSession()->SendNotification("Not enough money");
+                                    player->GetSession()->SendNotification("Vous n'avez pas l'or pour faire ceci");
                                 }
                             }
                             else
                             {
-                                player->GetSession()->SendNotification("Invalid item selected");
+                                player->GetSession()->SendNotification("L'objet sélectionné est invalide!");
                             }
                         }
                         // OnGossipHello(player, creature);
