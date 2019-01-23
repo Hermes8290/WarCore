@@ -12373,7 +12373,7 @@ void Player::RemoveItem(uint8 bag, uint8 slot, bool update)
             pItem->SendUpdateToPlayer(this);
     }
 }
-extern void RemoveReforge(Player* player, uint32 itemguid, bool update);
+void RemoveReforge(Player* player, uint32 itemguid, bool update);
 // Common operation need to remove item from inventory without delete in trade, auction, guild bank, mail....
 void Player::MoveItemFromInventory(uint8 bag, uint8 slot, bool update)
 {
@@ -12383,8 +12383,8 @@ void Player::MoveItemFromInventory(uint8 bag, uint8 slot, bool update)
         ItemRemovedQuestCheck(it->GetEntry(), it->GetCount());
         RemoveItem(bag, slot, update);
         it->SetNotRefundable(this, false);
-        RemoveItemFromUpdateQueueOf(it, this);
         RemoveReforge(this, it->GetGUID().GetCounter(), true);
+        RemoveItemFromUpdateQueueOf(it, this);
         if (it->IsInWorld())
         {
             it->RemoveFromWorld();
