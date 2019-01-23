@@ -1006,7 +1006,7 @@ void WorldSession::HandlePlayerLogin(LoginQueryHolder* holder)
     TC_METRIC_EVENT("player_events", "Login", pCurrChar->GetName());
 
     delete holder;
-    pCurrChar->FitPlayerInTeam(pCurrChar->GetBattleground() /*&& !pCurrChar->GetBattleground()->isArena()*/ ? true : false);
+    pCurrChar->FitPlayerInTeam(pCurrChar->GetBattleground() && !pCurrChar->GetBattleground() ? true : false, pCurrChar->GetBattleground());
 }
 
 void WorldSession::HandleSetFactionAtWar(WorldPacket& recvData)
