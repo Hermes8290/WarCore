@@ -17,7 +17,7 @@
 
 // This is where scripts' loading functions should be declared:
 void AddSC_Transmogrification();
-vois AddSC_REFORGER_NPC();
+void AddSC_REFORGER_NPC();
 
 
 // The name of this function should match:
