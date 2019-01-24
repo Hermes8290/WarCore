@@ -63,25 +63,25 @@ static const char* GetSlotName(uint8 slot, WorldSession* /*session*/)
 {
     switch (slot)
     {
-        case EQUIPMENT_SLOT_HEAD: return "Head";
-        case EQUIPMENT_SLOT_NECK: return "Neck";
-        case EQUIPMENT_SLOT_SHOULDERS: return "Shoulders";
-        case EQUIPMENT_SLOT_BODY: return "Shirt";
-        case EQUIPMENT_SLOT_CHEST: return "Chest";
-        case EQUIPMENT_SLOT_WAIST: return "Waist";
-        case EQUIPMENT_SLOT_LEGS: return "Legs";
-        case EQUIPMENT_SLOT_FEET: return "Feet";
-        case EQUIPMENT_SLOT_WRISTS: return "Wrists";
-        case EQUIPMENT_SLOT_HANDS: return "Hands";
-        case EQUIPMENT_SLOT_FINGER1: return "Right finger";
-        case EQUIPMENT_SLOT_FINGER2: return "Left finger";
-        case EQUIPMENT_SLOT_TRINKET1: return "Right trinket";
-        case EQUIPMENT_SLOT_TRINKET2: return "Left trinket";
-        case EQUIPMENT_SLOT_BACK: return "Back";
-        case EQUIPMENT_SLOT_MAINHAND: return "Main hand";
-        case EQUIPMENT_SLOT_OFFHAND: return "Off hand";
+        case EQUIPMENT_SLOT_HEAD: return "Tête";
+        case EQUIPMENT_SLOT_NECK: return "Cou";
+        case EQUIPMENT_SLOT_SHOULDERS: return "Epaules";
+        case EQUIPMENT_SLOT_BODY: return "Chemise";
+        case EQUIPMENT_SLOT_CHEST: return "Torse";
+        case EQUIPMENT_SLOT_WAIST: return "Taille";
+        case EQUIPMENT_SLOT_LEGS: return "Jambes";
+        case EQUIPMENT_SLOT_FEET: return "Pieds";
+        case EQUIPMENT_SLOT_WRISTS: return "Poignets";
+        case EQUIPMENT_SLOT_HANDS: return "Main";
+        case EQUIPMENT_SLOT_FINGER1: return "Doigt I";
+        case EQUIPMENT_SLOT_FINGER2: return "Doigt II";
+        case EQUIPMENT_SLOT_TRINKET1: return "Bijoux I";
+        case EQUIPMENT_SLOT_TRINKET2: return "Bijoux II";
+        case EQUIPMENT_SLOT_BACK: return "Dos";
+        case EQUIPMENT_SLOT_MAINHAND: return "Main droite";
+        case EQUIPMENT_SLOT_OFFHAND: return "Mais gauche";
         case EQUIPMENT_SLOT_TABARD: return "Tabard";
-        case EQUIPMENT_SLOT_RANGED: return "Ranged";
+        case EQUIPMENT_SLOT_RANGED: return "A distance";
         default: return NULL;
     }
 }
