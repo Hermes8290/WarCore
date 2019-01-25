@@ -2711,7 +2711,7 @@ void Player::InitTalentForLevel()
         uint32 talentPointsForLevel = CalculateTalentsPoints();
 
         // if used more that have then reset
-        /* if (m_usedTalentCount > talentPointsForLevel)
+        if (m_usedTalentCount > talentPointsForLevel)
         {
             if (!GetSession()->HasPermission(rbac::RBAC_PERM_SKIP_CHECK_MORE_TALENTS_THAN_ALLOWED))
                 ResetTalents(true);
@@ -2720,7 +2720,7 @@ void Player::InitTalentForLevel()
         }
         // else update amount of free points
         else
-            SetFreeTalentPoints(talentPointsForLevel - m_usedTalentCount); */
+            SetFreeTalentPoints(talentPointsForLevel - m_usedTalentCount);
     }
 
     if (!GetSession()->PlayerLoading())
@@ -24738,8 +24738,8 @@ uint32 Player::CalculateTalentsPoints() const
     uint32 talentPointsForLevel = getLevel() < 56 ? 0 : getLevel() - 55;
     talentPointsForLevel += m_questRewardTalentCount;
 
-    //if (talentPointsForLevel > base_talent)
-    //    talentPointsForLevel = base_talent;
+    if (talentPointsForLevel > base_talent)
+        talentPointsForLevel = base_talent;
 
     return uint32(talentPointsForLevel * sWorld->getRate(RATE_TALENT));
 }
