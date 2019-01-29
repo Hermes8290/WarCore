@@ -24,13 +24,13 @@
 class WhoListPlayerInfo
 {
 public:
-    WhoListPlayerInfo(ObjectGuid guid, uint32 team, AccountTypes security, uint8 level, uint8 clss, uint8 race, uint32 zoneid, uint8 gender, bool visible, std::wstring const& widePlayerName,
+    WhoListPlayerInfo(ObjectGuid guid, /*uint32 team*/, AccountTypes security, uint8 level, uint8 clss, uint8 race, uint32 zoneid, uint8 gender, bool visible, std::wstring const& widePlayerName,
         std::wstring const& wideGuildName, std::string const& playerName, std::string const& guildName) :
-        _guid(guid), _team(team), _security(security), _level(level), _class(clss), _race(race), _zoneid(zoneid), _gender(gender), _visible(visible),
+        _guid(guid), /*_team(team)*/, _security(security), _level(level), _class(clss), _race(race), _zoneid(zoneid), _gender(gender), _visible(visible),
         _widePlayerName(widePlayerName), _wideGuildName(wideGuildName), _playerName(playerName), _guildName(guildName) {}
 
     ObjectGuid GetGuid() const { return _guid; }
-    uint32 GetTeam() const { return _team; }
+    /*uint32 GetTeam() const { return _team; }*/
     AccountTypes GetSecurity() const { return _security; }
     uint8 GetLevel() const { return _level; }
     uint8 GetClass() const { return _class; }
