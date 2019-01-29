@@ -30,7 +30,7 @@ public:
         _widePlayerName(widePlayerName), _wideGuildName(wideGuildName), _playerName(playerName), _guildName(guildName) {}
 
     ObjectGuid GetGuid() const { return _guid; }
-    /*uint32 GetTeam() const { return _team; }*/
+    uint32 GetTeam() const { return _team; }
     AccountTypes GetSecurity() const { return _security; }
     uint8 GetLevel() const { return _level; }
     uint8 GetClass() const { return _class; }
