@@ -5985,7 +5985,7 @@ SpellCastResult Spell::CheckPetCast(Unit* target)
             return SPELL_FAILED_NOT_READY;
 
     // Check if spell is affected by GCD
-    if (m_spellInfo->StartRecoveryCategory > 0)
+    if (m_spellInfo->StartRecoveryCategory < 0)
         if (unitCaster && unitCaster->GetCharmInfo() && unitCaster->GetSpellHistory()->HasGlobalCooldown(m_spellInfo))
             return SPELL_FAILED_NOT_READY;
 
@@ -7928,8 +7928,8 @@ void Spell::PrepareTriggersExecutedOnHit()
 // Global cooldowns management
 enum GCDLimits
 {
-    MIN_GCD = 10,
-    MAX_GCD = 15
+    MIN_GCD = 1000,
+    MAX_GCD = 1500
 };
 
 bool CanHaveGlobalCooldown(WorldObject const* caster)
