@@ -3100,8 +3100,8 @@ void Spell::prepare(SpellCastTargets const& targets, AuraEffect const* triggered
         }
         SendSpellStart();
 
-        /*if (!(_triggeredCastFlags & TRIGGERED_IGNORE_GCD))
-            TriggerGlobalCooldown();*/
+        if (!(_triggeredCastFlags & TRIGGERED_IGNORE_GCD))
+            TriggerGlobalCooldown();
 
         // commented out !m_spellInfo->StartRecoveryTime, it forces instant spells with global cooldown to be processed in spell::update
         // as a result a spell that passed CheckCast and should be processed instantly may suffer from this delayed process
@@ -3124,7 +3124,7 @@ void Spell::cancel()
     switch (oldState)
     {
         case SPELL_STATE_PREPARING:
-            //CancelGlobalCooldown();
+            CancelGlobalCooldown();
             // no break
         case SPELL_STATE_DELAYED:
             SendInterrupted(0);
@@ -5026,8 +5026,8 @@ SpellCastResult Spell::CheckCast(bool strict, uint32* param1 /*= nullptr*/, uint
     }
 
     // Check global cooldown
-    /*if (strict && !(_triggeredCastFlags & TRIGGERED_IGNORE_GCD) && HasGlobalCooldown())
-        return !m_spellInfo->HasAttribute(SPELL_ATTR0_DISABLED_WHILE_ACTIVE) ? SPELL_FAILED_NOT_READY : SPELL_FAILED_DONT_REPORT;*/
+    if (strict && !(_triggeredCastFlags & TRIGGERED_IGNORE_GCD) && HasGlobalCooldown())
+        return !m_spellInfo->HasAttribute(SPELL_ATTR0_DISABLED_WHILE_ACTIVE) ? SPELL_FAILED_NOT_READY : SPELL_FAILED_DONT_REPORT;
 
     // only triggered spells can be processed an ended battleground
     if (!IsTriggered() && m_caster->GetTypeId() == TYPEID_PLAYER)
@@ -7928,8 +7928,8 @@ void Spell::PrepareTriggersExecutedOnHit()
 // Global cooldowns management
 enum GCDLimits
 {
-    MIN_GCD = 1000,
-    MAX_GCD = 1500
+    MIN_GCD = 100,
+    MAX_GCD = 150
 };
 
 bool CanHaveGlobalCooldown(WorldObject const* caster)
@@ -7941,7 +7941,7 @@ bool CanHaveGlobalCooldown(WorldObject const* caster)
     return true;
 }
 
-/*bool Spell::HasGlobalCooldown() const
+bool Spell::HasGlobalCooldown() const
 {
     if (!CanHaveGlobalCooldown(m_caster))
         return false;
@@ -7994,7 +7994,7 @@ void Spell::CancelGlobalCooldown()
         return;
 
     m_caster->ToUnit()->GetSpellHistory()->CancelGlobalCooldown(m_spellInfo);
-}*/
+}
 
 std::string Spell::GetDebugInfo() const
 {
