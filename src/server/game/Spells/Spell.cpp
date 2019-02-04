@@ -7928,8 +7928,8 @@ void Spell::PrepareTriggersExecutedOnHit()
 // Global cooldowns management
 enum GCDLimits
 {
-    MIN_GCD = 100,
-    MAX_GCD = 150
+    MIN_GCD = 10,
+    MAX_GCD = 15
 };
 
 bool CanHaveGlobalCooldown(WorldObject const* caster)
